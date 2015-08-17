@@ -52,60 +52,15 @@ Functions and methods SHOULD be 30 lines or less.
 
 The [alternative syntax for control structures](http://php.net/manual/en/control-structures.alternative-syntax.php) MUST NOT be used in files containing only PHP.
 
-
-## 4. Directory structure
-
-Directories MAY be omited if they're not used.
-
-Cache, user generated content and external (composer and bower) libraries SHOULD be excluded from distribution.
-
-LESS and JavaScript should be compiled into single files.
-
-### 4.1. Projects
-
-A project SHOULD follow the following directory structure:
-
-- bin - Executables and command line scripts
-- bower_components - Installed [bower](http://bower.io) packages
-- cache - Cached files, may be deleted at any time
-- config - Configuration files
-- controllers - Controller classes
-- dev - Development resources
-- js - JavaScript sources
-- lib - Library classes and functions
-- less - LESS stylesheets
-- locale - Translation files
-- models - Model classes
-- tests - Unit and API tests
-- vendor - Installed [composer](http://getcomposer.org) packages
-- views - View templates
-- www - Document root
-  - img - Images _(except user generated content)_
-  - usr - User generated content
-  - assets _(generated JavaScript and Stylesheet)_
-
-On staging and production environments, user generated content MUST be stored on secure, persistent, redundant and backed-up storage (e.g. [AWS S3](https://aws.amazon.com/s3/) or [Elastic file system](http://aws.amazon.com/efs/)).
-
-### 4.1 Libraries
-
-A library SHOULD follow the following directory structure:
-
-- bin - Executables and command line scripts
-- dev - Development resources, eg a database dump
-- locale - Translation files
-- src - Library classes and functions
-- tests - Unit and API tests
-- vendor - Installed [composer](http://getcomposer.org) packages
-
-## 5. Classes
+## 4. Classes
 
 Properties and methods SHOULD be public or protected, not private.
 
 Classes SHOULD NOT have simple getter and setter functions as replacement for public properties.
 
-## 6. Nesting
+## 5. Nesting
 
-### 6.1. Nested blocks
+### 5.1. Nested blocks
 
 Within the body of a function or method, there SHOULD be no more than 4 levels of nesting. With this many levels of nesting, introduce a new function rather than to use more nested blocks.
 
@@ -123,7 +78,7 @@ function foo() {
 }
 ```
 
-### 6.2. Control flow
+### 5.2. Control flow
 
 Assertions and alternative flows SHOULD come before the normal flow to reduce nesting.
 
@@ -184,9 +139,9 @@ function buzz($b) {
 ```
 
 
-## 7. Documentation
+## 6. Documentation
 
-### 7.1. README
+### 6.1. README
 
 Each project MUST include a `README.md` document in the root folder.
 
@@ -200,7 +155,7 @@ The README document SHOULD include API documentation or a link to the API docume
 
 The README document MAY include additional information which can be useful for developers.
 
-### 7.2. Document blocks
+### 6.2. Document blocks
 
 Each class MUST have a [document blocks](https://en.wikipedia.org/wiki/PHPDoc).
 
@@ -216,9 +171,9 @@ Variables document block SHOULD be as precise as possible. Examples:
 
 A document block for a method that implements the [fluent interface pattern](https://en.wikipedia.org/wiki/Fluent_interface) SHOULD state `@return $this`.
 
-## 8. Testing
+## 7. Testing
 
-### 8.1. Unit tests
+### 7.1. Unit tests
  
 Projects and libraries SHOULD include [unit tests](http://codeception.com/docs/06-UnitTests), runnable by codeception.
 
@@ -228,13 +183,13 @@ Each model class SHOULD be covered by unit tests, with a code coverage of 90% or
 
 A controller class SHOULD NOT be covered by unit tests.
 
-### 8.2. API tests
+### 7.2. API tests
 
 Projects with a web service API SHOULD include [API tests](http://codeception.com/docs/10-WebServices), runnable by codeception.
 
 Controller methods related to a web service SHOULD be covered by unit tests, with a code covereage of 90% or more.
 
-### 8.3. Functional tests
+### 7.3. Functional tests
 
 Projects with a user interface SHOULD have a test plan for manual acceptance testing.
 
