@@ -23,7 +23,7 @@ Copy the Travis CI configuration file from the php-code-quality directory and en
 ### PHPUnit
 [PHPUnit](https://phpunit.de/) is a programmer-oriented testing framework for PHP. The unit tests should be in the `tests` directory.
 
-    phpunit --configuration vendor/jasny/php-code-quality/phpunit.xml.dist
+    vendor/bin/phpunit --configuration vendor/jasny/php-code-quality/phpunit.xml.dist
 
 ### vfsStream
 [vfsStream](https://github.com/mikey179/vfsStream) is a stream wrapper for a virtual file system that may be helpful in unit tests to mock the real file system.
@@ -32,5 +32,9 @@ Copy the Travis CI configuration file from the php-code-quality directory and en
 [phpcs](https://github.com/squizlabs/PHP_CodeSniffer) tokenises PHP files and detects violations of a defined set of coding standards. It is an essential development tool that ensures your code remains clean and consistent.
 This package comes with a custom ruleset which embodies the Jasny PHP coding standard.
 
-    bin/phpcs . --standard=vendor/jasny/php-code-quality --ignore=/bin/,/vendor/,/bower_components/,/tests/
+    vendor/bin/phpcs . --standard=vendor/jasny/php-code-quality --ignore=/bin/,/vendor/,/bower_components/,/tests/
+
+CodeSniffer is able to fix simple issues automatically
+
+    vendor/bin/phpcbf . --standard=vendor/jasny/php-code-quality --ignore=/bin/,/vendor/,/bower_components/,/tests/
 
