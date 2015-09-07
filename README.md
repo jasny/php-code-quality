@@ -27,11 +27,11 @@ Copy the PHPUnit configuration into the projects root folder
 [phpcs](https://github.com/squizlabs/PHP_CodeSniffer) tokenises PHP files and detects violations of a defined set of coding standards. It is an essential development tool that ensures your code remains clean and consistent.
 This package comes with a custom ruleset which embodies the Jasny PHP coding standard.
 
-    vendor/bin/phpcs . --standard=vendor/jasny/php-code-quality --ignore=/bin/,/vendor/,/bower_components/,/tests/
+    vendor/bin/phpcs . --standard=vendor/jasny/php-code-quality --ignore=/vendor/,/tests/
 
 CodeSniffer is able to fix simple issues automatically
 
-    vendor/bin/phpcbf . --standard=vendor/jasny/php-code-quality --ignore=/bin/,/vendor/,/bower_components/,/tests/
+    vendor/bin/phpcbf . --standard=vendor/jasny/php-code-quality --ignore=/vendor/,/tests/
 
 
 ## Services
