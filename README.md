@@ -14,10 +14,10 @@ All PHP projects of Legal Things should include this package. It can be installe
 
 ## Toolchain
 
-### Codeception
-[Codeception](http://codeception.com/) is BDD-style PHP testing build on PHPUnit. It supports Unit testing, API testing and Acceptance testing.
+### PHPUnit
+[PHPUnit](https://phpunit.de/) is a programmer-oriented testing framework for PHP.
 
-    bin/codecept run
+    phpunit
 
 ### vfsStream
 [vfsStream](https://github.com/mikey179/vfsStream) is a stream wrapper for a virtual file system that may be helpful in unit tests to mock the real file system.
