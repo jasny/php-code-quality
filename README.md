@@ -16,7 +16,9 @@ All PHP projects of Legal Things should include this package. It can be installe
 ### PHPUnit
 [PHPUnit](https://phpunit.de/) is a programmer-oriented testing framework for PHP. The unit tests should be in the `tests` directory.
 
-    vendor/bin/phpunit --configuration vendor/jasny/php-code-quality/phpunit.xml.dist
+Copy the PHPUnit configuration into the projects root folder
+
+    cp vendor/jasny/php-code-quality/phpunit.xml.dist .
 
 ### vfsStream
 [vfsStream](https://github.com/mikey179/vfsStream) is a stream wrapper for a virtual file system that may be helpful in unit tests to mock the real file system.
@@ -42,9 +44,6 @@ _Due to high costs, these services are only used for open-source projects._
 Copy the Travis CI configuration file from the php-code-quality directory.
 
     cp vendor/jasny/php-code-quality/travis.yml.dist .travis.yml
-
-### Coveralls
-[Coveralls](https://coveralls.io/) provides a code coverage overview.
 
 ### Scrutinizer
 [Scrutinizer](https://scrutinizer-ci.com/) tests code quality.

@@ -7,12 +7,11 @@ php:
 
 install:
   - composer install
-  - composer require satooshi/php-coveralls
-
+  - wget https://scrutinizer-ci.com/ocular.phar -O "$HOME/ocular.phar"
+  
 script:
-  - vendor/bin/phpcs . --standard=vendor/jasny/php-code-quality --ignore=/bin/,/vendor/,/bower_components/,/tests/
-  - vendor/bin/phpunit --configuration vendor/jasny/php-code-quality/phpunit.xml.dist --coverage-clover build/logs/clover.xml
+  - vendor/bin/phpunit --coverage-clover cache/logs/clover.xml
 
 after_success:
-  - php vendor/bin/coveralls
+  - php "$HOME/ocular.phar" code-coverage:upload --format=php-clover cache/logs/clover.xml
 
