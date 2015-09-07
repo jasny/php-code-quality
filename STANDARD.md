@@ -175,7 +175,7 @@ A document block for a method that implements the [fluent interface pattern](htt
 
 ### 7.1. Unit tests
  
-Projects and libraries SHOULD include [unit tests](http://codeception.com/docs/06-UnitTests), runnable by codeception.
+Projects and libraries SHOULD include unit tests, runnable by phpunit or codeception.
 
 Each library class and function SHOULD be covered by unit tests, with a code coverage of 90% or more.
 
@@ -185,7 +185,7 @@ A controller class SHOULD NOT be covered by unit tests.
 
 ### 7.2. API tests
 
-Projects with a web service API SHOULD include [API tests](http://codeception.com/docs/10-WebServices), runnable by codeception.
+Projects with a web service API SHOULD include API tests, runnable by phpunit or codeception.
 
 Controller methods related to a web service SHOULD be covered by unit tests, with a code covereage of 90% or more.
 
@@ -193,5 +193,5 @@ Controller methods related to a web service SHOULD be covered by unit tests, wit
 
 Projects with a user interface SHOULD have a test plan for manual acceptance testing.
 
-Controller methods not related to a web service MAY be covered by automated [functional tests](http://codeception.com/docs/05-FunctionalTests), runnable by codeception.
+Controller methods not related to a web service MAY be covered by automated functional tests, runnable by codeception.
 
