@@ -11,13 +11,6 @@ All PHP projects of Legal Things should include this package. It can be installe
 
     composer require --dev jasny/php-code-quality
 
-### Travis
-
-Copy the Travis CI configuration file from the php-code-quality directory and enable the project on [Travis CI](http://travis-ci.org).
-
-    cp vendor/jasny/php-code-quality/travis.yml.dist .travis.yml
-
-
 ## Toolchain
 
 ### PHPUnit
@@ -37,4 +30,25 @@ This package comes with a custom ruleset which embodies the Jasny PHP coding sta
 CodeSniffer is able to fix simple issues automatically
 
     vendor/bin/phpcbf . --standard=vendor/jasny/php-code-quality --ignore=/bin/,/vendor/,/bower_components/,/tests/
+
+
+## Services
+
+_Due to high costs, these services are only used for open-source projects._
+
+### Travis
+[Travis CI](https://travis-ci.org) will run all tests on each pull-request and push to the master branch.
+
+Copy the Travis CI configuration file from the php-code-quality directory.
+
+    cp vendor/jasny/php-code-quality/travis.yml.dist .travis.yml
+
+### Coveralls
+[Coveralls](https://coveralls.io/) provides a code coverage overview.
+
+### Scrutinizer
+[Scrutinizer](https://scrutinizer-ci.com/) tests code quality.
+
+### SensioLabsInsight
+[SensioLabsInsight](https://insight.sensiolabs.com) gives automatic and unique advise for increasing code quality.
 
