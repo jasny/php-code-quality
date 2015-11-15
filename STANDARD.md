@@ -187,7 +187,7 @@ A controller class SHOULD NOT be covered by unit tests.
 
 Projects with a web service API SHOULD include API tests, runnable by phpunit or codeception.
 
-Controller methods related to a web service SHOULD be covered by unit tests, with a code covereage of 90% or more.
+Controller methods related to a web service SHOULD be covered by API tests, with a code covereage of 90% or more.
 
 ### 7.3. Functional tests
 
