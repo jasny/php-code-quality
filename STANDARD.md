@@ -26,15 +26,8 @@ Lines MAY be longer than 80 characters; Lines SHOULD NOT be longer than 120 char
 
 The body of each structure MUST be enclosed by braces, with the exception of an `if` structure.
 
-#### 2.2.1. Exception on [Section 5.1 - `if`, `elseif`, `else`](http://www.php-fig.org/psr/psr-2/#5.1.-if,-elseif,-else)
-An `if` structure MUST be omit braces when the body is on the same line as the `if` statement. The `if` structure MUST include braces when the body is on the next line after the `if` statement.
 
-    if ($expr) echo 'Expression is true';
-
-An `if` structure SHOULD be on a single line, if the complete structure is equal to or shorter than 80 characters.
-
-
-## 3. General
+## 3. Structure
 
 ### 3.1. Keywords
 
@@ -52,33 +45,68 @@ Functions and methods SHOULD be 30 lines or less.
 
 The [alternative syntax for control structures](http://php.net/manual/en/control-structures.alternative-syntax.php) MUST NOT be used in files containing only PHP.
 
-## 4. Classes
+### 3.5. Spaces
 
-Properties and methods SHOULD be public or protected, not private.
+You MUST a single space after each comma delimiter.
 
-Classes SHOULD NOT have simple getter and setter functions as replacement for public properties.
+You MUST add a single space around binary operators (==, &&, ...), with the exception of the concatenation (.) operator.
 
-## 5. Nesting
+You MUST place unary operators (!, --, ...) adjacent to the affected variable.
 
-### 5.1. Nested blocks
+```php
+if (isset($foo->bar) && $foo->bar > 0) {
+   $foo->bar--;
+}
+```
 
-Within the body of a function or method, there SHOULD be no more than 4 levels of nesting. With this many levels of nesting, introduce a new function rather than to use more nested blocks.
+### 3.6. Arrays
+
+You MUST use brackets `[ ]` to create an array.
+
+You MUST place each subarray on a new line for multidimension arrays.
+
+```php
+$array = [
+  ['red', 'blue', 'green'],
+  ['big', 'small'],
+  [22, 99]
+]
+```
+
+### 3.6. Instantiating objects
+
+Use parentheses when instantiating classes regardless of the number of arguments the constructor has.
+
+```
+$foo = new Foo();
+```
+
+### 3.7. Comparison
+
+Always use [identical comparison](http://php.net/manual/en/language.operators.comparison.php) unless you need type juggling.
+
+Always use variable operator value (eg `$foo >= 10`) and never yoda coditions.
+
+Use `return null;` when a function explicitly returns null values and use `return;` when the function returns void values.
+
+
+### 3.8. Nested blocks
+
+Within the body of a function or method, there SHOULD be no more than 3 levels of nesting. With this many levels of nesting, introduce a new function rather than to use more nested blocks.
 
 ```php
 function foo() {
-    foreach (/* ... */) {
-        if (/* ... */) {
-            while (/* ... */) {
-                if (/* ... */) {
-                    // No more nested blocks
-                }
+    if (/* ... */) {
+        foreach (/* ... */) {
+            if (/* ... */) {
+                // No more nested blocks
             }
         }
     }
 }
 ```
 
-### 5.2. Control flow
+### 3.9. Control flow
 
 Assertions and alternative flows SHOULD come before the normal flow to reduce nesting.
 
@@ -86,7 +114,9 @@ Assertions and alternative flows SHOULD come before the normal flow to reduce ne
 
 ```php
 function fizz($a) {
-    if (!$a) return;
+    if (!$a) {
+        return;
+    }
 
     foo();
     bar();
@@ -96,7 +126,9 @@ function fizz($a) {
 ```php
 function buzz($b) {
     while ($b as $i) {
-        if (!$i) continue;
+        if (!$i) {
+            continue;
+        }
        
         $i->foo();
         $i->bar();
@@ -138,10 +170,16 @@ function buzz($b) {
 }
 ```
 
+## 3.10. Classes
 
-## 6. Documentation
+Properties and methods SHOULD be public or protected, not private.
 
-### 6.1. README
+Classes SHOULD NOT have simple getter and setter functions as replacement for public properties.
+
+
+## 4. Documentation
+
+### 4.1. README
 
 Each project MUST include a `README.md` document in the root folder.
 
@@ -155,9 +193,9 @@ The README document SHOULD include API documentation or a link to the API docume
 
 The README document MAY include additional information which can be useful for developers.
 
-### 6.2. Document blocks
+### 4.2. Document blocks
 
-Each class MUST have a [document blocks](https://en.wikipedia.org/wiki/PHPDoc).
+Each class MUST have a [document block](https://en.wikipedia.org/wiki/PHPDoc).
 
 Each public property MUST have a document block with an `@var` tag. Each protected of private property SHOULD have a document block with an `@var` tag.
 
@@ -171,27 +209,41 @@ Variables document block SHOULD be as precise as possible. Examples:
 
 A document block for a method that implements the [fluent interface pattern](https://en.wikipedia.org/wiki/Fluent_interface) SHOULD state `@return $this`.
 
-## 7. Testing
+_Tests cases are an exception to this paragraph. See 5.4._
 
-### 7.1. Unit tests
+
+## 5. Testing
+
+### 5.1. Unit tests
  
 Projects and libraries SHOULD include unit tests, runnable by phpunit or codeception.
 
-Each library class and function SHOULD be covered by unit tests, with a code coverage of 90% or more.
+Each library class and function SHOULD be covered by unit tests, with a code coverage of 100%. Code that can't be tested should be [explicitly ignored](https://phpunit.de/manual/current/en/code-coverage-analysis.html#code-coverage-analysis.ignoring-code-blocks).
 
-Each model class SHOULD be covered by unit tests, with a code coverage of 90% or more.
+Each model class SHOULD be covered by unit tests, with a code coverage of 95% or more.
 
 A controller class SHOULD NOT be covered by unit tests.
 
-### 7.2. API tests
+### 5.2. API tests
 
-Projects with a web service API SHOULD include API tests, runnable by phpunit or codeception.
+Projects with a web service API SHOULD include API tests, runnable by codeception.
 
-Controller methods related to a web service SHOULD be covered by API tests, with a code covereage of 90% or more.
+Controller methods related to a web service SHOULD be covered by API tests, with a code covereage of 95% or more.
 
-### 7.3. Functional tests
+### 5.3. Functional tests
 
 Projects with a user interface SHOULD have a test plan for manual acceptance testing.
 
 Controller methods not related to a web service MAY be covered by automated functional tests, runnable by codeception.
+
+### 5.4. Documentation
+
+Test cases SHOULD NOT use document blocks for all properties and methods as stated in 4.2.
+
+Tests SHOULD use document blocks for annotations where available. Test cases SHOULD use annotations rather than code if possible.
+
+
+## 6. icense
+
+Open source Jasny libraries SHOULD be released under the MIT license. A LICENSE file should be present in the library's root folder.
 
