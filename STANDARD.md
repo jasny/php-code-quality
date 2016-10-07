@@ -242,6 +242,14 @@ Test cases SHOULD NOT use document blocks for all properties and methods as stat
 
 Tests SHOULD use document blocks for annotations where available. Test cases SHOULD use annotations rather than code if possible.
 
+### 5.5. Continuous integration
+
+The default branch (typically `master`) SHOULD be protected. You SHOULD never push directly to the default branch.
+
+Pull requests SHOULD be tested by running the unit tests on an continuous integration platform (like Travis CI or Scrutinizer) prior to being merged with the default branch.
+
+Pull requests SHOULD be tested on code quality (using e.g. Scrutinizer) prior to being merged with the default branch.
+
 
 ## 6. icense
 
