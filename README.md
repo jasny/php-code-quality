@@ -1,5 +1,10 @@
 # PHP code quality
 
+[![Build Status](https://travis-ci.org/jasny/php-code-quality.svg?branch=master)](https://travis-ci.org/jasny/php-code-quality)
+[![Code Coverage](https://scrutinizer-ci.com/g/jasny/php-code-quality/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/jasny/php-code-quality/?branch=master)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/jasny/php-code-quality/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/jasny/php-code-quality/?branch=master)
+[![SensioLabsInsight](https://insight.sensiolabs.com/projects/72d0ff50-daa3-4f2c-91ab-bf5c2397e899/mini.png)](https://insight.sensiolabs.com/projects/72d0ff50-daa3-4f2c-91ab-bf5c2397e899)
+
 ## Coding standard
 
 Please read the [Jasny PHP coding standard](https://github.com/jasny/php-code-quality/blob/master/STANDARD.md#readme).
