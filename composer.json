@@ -14,6 +14,9 @@
         "mikey179/vfsStream": "1.*",
         "squizlabs/php_codesniffer": "2.*"
     },
+    "suggest": {
+        "codeception/codeception": "For testing applications"
+    },
     "autoload": {
         "psr-4": {
             "Jasny\\": "src/"

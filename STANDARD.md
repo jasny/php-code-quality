@@ -5,7 +5,7 @@ This guide defines a set of rules aimed to create consistent code across all PHP
 The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and
 "OPTIONAL" in this document are to be interpreted as described in RFC 2119.
 
-The term Project is used for deliverables that are typically served by a web server or run on the command line. The
+The term Application is used for deliverables that are typically served by a web server or run on the command line. The
 term Library is used for a collection of classes and/or functions which is consumed by projects or other libraries.
 
 
@@ -13,7 +13,7 @@ term Library is used for a collection of classes and/or functions which is consu
 
 Jasny follows the [PSR-1 basic coding standard](http://www.php-fig.org/psr/psr-1/) with an exception on [Section 3 - Namespace and Class Names](3.-namespace-and-class-names).
 
-Projects SHOULD NOT use a vendor namespace.
+Applications SHOULD NOT use a vendor namespace.
 
 
 ## 2. PSR-2
@@ -224,7 +224,7 @@ _Tests cases are an exception to this paragraph. See 5.4._
 
 ### 5.1. Unit tests
  
-Projects and libraries SHOULD include unit tests, runnable by phpunit or codeception.
+Applications and libraries SHOULD include unit tests, runnable by phpunit or codeception.
 
 Each library class and function SHOULD be covered by unit tests, with a code coverage of 100%. Code that can't be
 tested should be [explicitly ignored](https://phpunit.de/manual/current/en/code-coverage-analysis.html#code-coverage-analysis.ignoring-code-blocks).
@@ -235,13 +235,13 @@ A controller class SHOULD NOT be covered by unit tests.
 
 ### 5.2. API tests
 
-Projects with a web service API SHOULD include API tests, runnable by codeception.
+Applications with a web service API SHOULD include API tests, runnable by codeception.
 
 Controller methods related to a web service SHOULD be covered by API tests, with a code covereage of 95% or more.
 
 ### 5.3. Functional tests
 
-Projects with a user interface SHOULD have a test plan for manual acceptance testing.
+Applications with a user interface SHOULD have a test plan for manual acceptance testing.
 
 Controller methods not related to a web service MAY be covered by automated functional tests, runnable by codeception.
 
