@@ -177,7 +177,7 @@ function buzz($b) {
 
 ## 3.10. Classes
 
-Properties and methods SHOULD be public or protected, not private.
+Properties and methods SHOULD NOT be private, only public or protected.
 
 Classes SHOULD NOT have simple getter and setter functions as replacement for public properties.
 
