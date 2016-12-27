@@ -21,10 +21,6 @@
         "psr-4": {
             "Jasny\\": "src/"
         }
-    }, 
-    "config": {
-        "use-include-path": true,
-        "bin-dir": "bin"
     }
 }
 
