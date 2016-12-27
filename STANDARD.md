@@ -18,13 +18,13 @@ Applications SHOULD NOT use a vendor namespace.
 
 ## 2. PSR-2
 
-Jasny follows the [PSR-2 coding style guide](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-2-coding-style-guide.md)
-with a number of exceptions.
+Jasny follows the [PSR-2 coding style guide](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-2-coding-style-guide.md).
 
 ### 2.1. Exception on [Section 2.3 - Lines](http://www.php-fig.org/psr/psr-2/#2.3.-lines)
 
-Lines MAY be longer than 80 characters; Lines SHOULD NOT be longer than 120 characters; lines longer than that SHOULD
-be split into multiple subsequent lines of no more than 120 characters each.
+The following rule may be ignored ignored:
+
+> ~~Lines SHOULD NOT be longer than 80 characters; lines longer than that SHOULD be split into multiple subsequent lines of no more than 80 characters each.~~
 
 
 ## 3. Structure

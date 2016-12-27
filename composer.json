@@ -16,7 +16,8 @@
         "squizlabs/php_codesniffer": "2.*"
     },
     "suggest": {
-        "codeception/codeception": "For testing applications"
+        "codeception/codeception": "BDD testing framework for testing applications",
+        "jasny/codeception-module": "Codeception integration for Jasny MVC"
     },
     "autoload": {
         "psr-4": {
