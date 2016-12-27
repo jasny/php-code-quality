@@ -38,19 +38,4 @@ trait TestHelper
         
         return $refl->setValue($object, $value);
     }
-
-    /**
-     * Get a private or protected property
-     * 
-     * @param object $object
-     * @param string $property
-     * @return mixed
-     */
-    protected function getPrivateProperty($object, $property)
-    {
-        $refl = new \ReflectionProperty(get_class($object), $property);
-        $refl->setAccessible(true);
-        
-        return $refl->getValue($object);
-    }
 }
