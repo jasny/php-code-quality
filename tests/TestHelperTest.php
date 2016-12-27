@@ -66,4 +66,24 @@ class TestHelperTest extends TestCase
         
         $this->assertAttributeEquals('foo', $access . 'Prop', $this->object);
     }
+    
+    
+    public function errorLevelProvider()
+    {
+        return [
+            [E_USER_NOTICE],
+            [E_USER_WARNING]
+        ];
+    }
+    
+    /**
+     * @dataProvider errorLevelProvider
+     * @param int $level
+     */
+    public function testAssertLastError($level)
+    {
+        @trigger_error("Some error", $level);
+        
+        $this->assertLastError($level, "Some error");
+    }
 }
