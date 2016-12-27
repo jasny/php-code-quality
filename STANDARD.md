@@ -2,29 +2,29 @@
 
 This guide defines a set of rules aimed to create consistent code across all PHP projects of Jasny.
 
-The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in RFC 2119.
+The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and
+"OPTIONAL" in this document are to be interpreted as described in RFC 2119.
 
-The term Project is used for deliverables that are typically served by a web server or run on the command line. The term Library is used for a collection of classes and/or functions which is consumed by projects or other libraries.
+The term Project is used for deliverables that are typically served by a web server or run on the command line. The
+term Library is used for a collection of classes and/or functions which is consumed by projects or other libraries.
 
 
 ## 1. PSR-1
 
-Jasny follows the [PSR-1 basic coding standard](http://www.php-fig.org/psr/psr-1/) with an exception on [Section 3 - Namespace and Class Names](3.-namespace-and-class-names):
+Jasny follows the [PSR-1 basic coding standard](http://www.php-fig.org/psr/psr-1/) with an exception on [Section 3 - Namespace and Class Names](3.-namespace-and-class-names).
 
 Projects SHOULD NOT use a vendor namespace.
 
 
 ## 2. PSR-2
 
-Jasny follows the [PSR-2 coding style guide](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-2-coding-style-guide.md) with a number of exceptions.
+Jasny follows the [PSR-2 coding style guide](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-2-coding-style-guide.md)
+with a number of exceptions.
 
 ### 2.1. Exception on [Section 2.3 - Lines](http://www.php-fig.org/psr/psr-2/#2.3.-lines)
 
-Lines MAY be longer than 80 characters; Lines SHOULD NOT be longer than 120 characters; lines longer than that SHOULD be split into multiple subsequent lines of no more than 120 characters each.
-
-### 2.2. Exception on [Section 5 - Control Structures](http://www.php-fig.org/psr/psr-2/#5.-control-structures)
-
-The body of each structure MUST be enclosed by braces, with the exception of an `if` structure.
+Lines MAY be longer than 80 characters; Lines SHOULD NOT be longer than 120 characters; lines longer than that SHOULD
+be split into multiple subsequent lines of no more than 120 characters each.
 
 
 ## 3. Structure
@@ -43,13 +43,15 @@ Functions and methods SHOULD be 30 lines or less.
 
 ### 3.4. Alternative syntax for control structures
 
-The [alternative syntax for control structures](http://php.net/manual/en/control-structures.alternative-syntax.php) MUST NOT be used in files containing only PHP.
+The [alternative syntax for control structures](http://php.net/manual/en/control-structures.alternative-syntax.php)
+MUST NOT be used in files containing only PHP.
 
 ### 3.5. Spaces
 
 You MUST a single space after each comma delimiter.
 
-You MUST add a single space around binary operators (==, &&, ...), with the exception of the concatenation (.) operator.
+You MUST add a single space around binary operators (==, &&, ...), with the exception of the concatenation (.)
+operator.
 
 You MUST place unary operators (!, --, ...) adjacent to the affected variable.
 
@@ -70,7 +72,7 @@ $array = [
   ['red', 'blue', 'green'],
   ['big', 'small'],
   [22, 99]
-]
+];
 ```
 
 ### 3.6. Instantiating objects
@@ -83,16 +85,19 @@ $foo = new Foo();
 
 ### 3.7. Comparison
 
-Always use [identical comparison](http://php.net/manual/en/language.operators.comparison.php) unless you need type juggling.
+Always use [identical comparison](http://php.net/manual/en/language.operators.comparison.php). If needed explicitly
+cast values to a specific type (eg `(string)$foo === $bar)`).
 
 Always use variable operator value (eg `$foo >= 10`) and never yoda coditions.
 
-Use `return null;` when a function explicitly returns null values and use `return;` when the function returns void values.
+Use `return null;` when a function explicitly returns null values and use `return;` when the function returns void
+values.
 
 
 ### 3.8. Nested blocks
 
-Within the body of a function or method, there SHOULD be no more than 3 levels of nesting. With this many levels of nesting, introduce a new function rather than to use more nested blocks.
+Within the body of a function or method, there SHOULD be no more than 3 levels of nesting. With this many levels of
+nesting, introduce a new function rather than to use more nested blocks.
 
 ```php
 function foo() {
@@ -197,9 +202,11 @@ The README document MAY include additional information which can be useful for d
 
 Each class MUST have a [document block](https://en.wikipedia.org/wiki/PHPDoc).
 
-Each public property MUST have a document block with an `@var` tag. Each protected of private property SHOULD have a document block with an `@var` tag.
+Each public property MUST have a document block with an `@var` tag. Each protected of private property SHOULD have a
+document block with an `@var` tag.
 
-Each function and method MUST have a document block with `@param` tags for all parameters and an `@return` tag if a value is returned.
+Each function and method MUST have a document block with `@param` tags for all parameters and an `@return` tag if a
+value is returned.
 
 Variables document block SHOULD be as precise as possible. Examples:
 
@@ -207,7 +214,8 @@ Variables document block SHOULD be as precise as possible. Examples:
  * `@var Foo|Bar` is preferred to `@var object`
  * `@var Foo[]` is preferred to `@var array`
 
-A document block for a method that implements the [fluent interface pattern](https://en.wikipedia.org/wiki/Fluent_interface) SHOULD state `@return $this`.
+A document block for a method that implements the [fluent interface pattern](https://en.wikipedia.org/wiki/Fluent_interface)
+SHOULD state `@return $this`.
 
 _Tests cases are an exception to this paragraph. See 5.4._
 
@@ -218,7 +226,8 @@ _Tests cases are an exception to this paragraph. See 5.4._
  
 Projects and libraries SHOULD include unit tests, runnable by phpunit or codeception.
 
-Each library class and function SHOULD be covered by unit tests, with a code coverage of 100%. Code that can't be tested should be [explicitly ignored](https://phpunit.de/manual/current/en/code-coverage-analysis.html#code-coverage-analysis.ignoring-code-blocks).
+Each library class and function SHOULD be covered by unit tests, with a code coverage of 100%. Code that can't be
+tested should be [explicitly ignored](https://phpunit.de/manual/current/en/code-coverage-analysis.html#code-coverage-analysis.ignoring-code-blocks).
 
 Each model class SHOULD be covered by unit tests, with a code coverage of 95% or more.
 
@@ -240,18 +249,21 @@ Controller methods not related to a web service MAY be covered by automated func
 
 Test cases SHOULD NOT use document blocks for all properties and methods as stated in 4.2.
 
-Tests SHOULD use document blocks for annotations where available. Test cases SHOULD use annotations rather than code if possible.
+Tests SHOULD use document blocks for annotations where available. Test cases SHOULD use annotations rather than code if
+possible.
 
 ### 5.5. Continuous integration
 
-The default branch (typically `master`) SHOULD be protected. You SHOULD never push directly to the default branch.
+The default branch (typically `master`) SHOULD be protected. You SHOULD NOT push directly to the default branch.
 
-Pull requests SHOULD be tested by running the unit tests on an continuous integration platform (like Travis CI or Scrutinizer) prior to being merged with the default branch.
+Pull requests SHOULD be tested by running the unit tests on an continuous integration platform (like Travis CI or
+Scrutinizer) prior to being merged with the default branch.
 
-Pull requests SHOULD be tested on code quality (using e.g. Scrutinizer) prior to being merged with the default branch.
+Pull requests SHOULD be tested on code quality (using eg Scrutinizer) prior to being merged with the default branch.
 
 
-## 6. icense
+## 6. License
 
-Open source Jasny libraries SHOULD be released under the MIT license. A LICENSE file should be present in the library's root folder.
+Open source Jasny libraries SHOULD be released under the MIT license. A `LICENSE` file SHOULD be present in the library's
+root folder.
 
