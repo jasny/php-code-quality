@@ -2,11 +2,23 @@
 
 namespace Jasny;
 
+use PHPUnit_Framework_MockObject_MockObject as MockObject;
+use PHPUnit_Framework_MockObject_MockBuilder as MockBuilder;
+use PHPUnit_Framework_MockObject_Matcher_Invocation as Invocation;
+
 /**
  * Helper methods
  */
 trait TestHelper
 {
+    /**
+     * Returns a builder object to create mock objects using a fluent interface.
+     *
+     * @param string $className
+     * @return MockBuilder
+     */
+    abstract public function getMockBuilder($className);
+    
     /**
      * Call a private or protected method
      * 
@@ -36,7 +48,7 @@ trait TestHelper
         $refl = new \ReflectionProperty(get_class($object), $property);
         $refl->setAccessible(true);
         
-        return $refl->setValue($object, $value);
+        $refl->setValue($object, $value);
     }
     
     
@@ -50,5 +62,31 @@ trait TestHelper
     {
         $expected = compact('type') + (isset($message) ? compact('message') : []);
         $this->assertArraySubset($expected, error_get_last());
+    }
+    
+    /**
+     * Create mock for next callback.
+     * 
+     * <code>
+     *   $callback = $this->createCallbackMock($this->once(), function(InvocationMocker $invoke) {
+     *     $invoke->with('abc')->willReturn(10);
+     *   });
+     * </code>
+     * 
+     * @param Invocation  $matcher
+     * @param callable    $assertInvoke
+     * @return MockObject
+     */
+    protected function createCallbackMock(Invocation $matcher = null, $assertInvoke = null)
+    {
+        $callback = $this->getMockBuilder(\stdClass::class)->setMethods(['__invoke'])->getMock();
+        
+        $invoke = $matcher ? $callback->expects($matcher)->method('__invoke') : $callback->method('__invoke');
+        
+        if (is_callable($assertInvoke)) {
+            $assertInvoke($invoke);
+        }
+        
+        return $callback;
     }
 }
