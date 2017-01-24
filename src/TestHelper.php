@@ -22,11 +22,13 @@ trait TestHelper
     /**
      * Assert that the array contains the expected subset.
      * 
-     * @param array       $expected
+     * @param array       $subset
      * @param array|mixed $array
+     * @param boolean     $strict
+     * @param string      $message
      * @return void
      */
-    abstract public function assertArraySubset($expected, $array);
+    abstract public function assertArraySubset($subset, $array, $strict = false, $message = '');
     
     
     /**
