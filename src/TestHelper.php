@@ -65,6 +65,19 @@ trait TestHelper
         $this->assertArraySubset($expected, error_get_last());
     }
     
+    
+    /**
+     * @param \Closure|array|null|mixed $assert
+     * @throws \InvalidArgumentException
+     */
+    protected function assertCallbackAssert($assert)
+    {
+        if (isset($assert) && !is_array($assert) && !$assert instanceof \Closure) {
+            $type = (is_object($assert) ? get_class($assert) . ' ' : '') . gettype($assert);
+            throw new \InvalidArgumentException("Expected an array or Closure, got a $type");
+        }
+    }
+    
     /**
      * Create mock for next callback.
      * 
@@ -83,17 +96,14 @@ trait TestHelper
      *   );
      * </code>
      * 
-     * @param Invocation     $matcher
-     * @param \Closure|array $assert
-     * @param mixed          $return
+     * @param Invocation          $matcher
+     * @param \Closure|array|null $assert
+     * @param mixed               $return
      * @return MockObject
      */
     protected function createCallbackMock(Invocation $matcher = null, $assert = null, $return = null)
     {
-        if (isset($assert) && !is_array($assert) && !$assert instanceof \Closure) {
-            $type = (is_object($assert) ? get_class($assert) . ' ' : '') . gettype($assert);
-            throw new \InvalidArgumentException("Expected an array or Closure, got a $type");
-        }
+        $this->assertCallbackAssert($assert);
         
         $callback = $this->getMockBuilder(\stdClass::class)->setMethods(['__invoke'])->getMock();
         
