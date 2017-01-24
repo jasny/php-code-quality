@@ -123,15 +123,38 @@ class TestHelperTest extends TestCase
         }
     }
     
+    public function testCreateCallbackMockSimpleAssertInvoke()
+    {
+        $callback = $this->createCallbackMock($this->once(), ['foo', 'zoo'], 'bar');
+        
+        $this->assertTrue(is_callable($callback));
+        
+        $this->assertEquals('bar', $callback('foo', 'zoo'));
+    }
+    
+    public function testCreateCallbackMockSimpleAssertInvokeFail()
+    {
+        $callback = $this->createCallbackMock($this->once(), ['foo'], 'bar');
+        
+        $this->assertTrue(is_callable($callback));
+        
+        try {
+            $callback('qux');
+            $this->fail("Expected an expectation failed exception");
+        } catch (\PHPUnit_Framework_ExpectationFailedException $e) {
+            $this->forgetMockObjects();
+        }
+    }
+    
     public function testCreateCallbackMockAssertInvoke()
     {
         $callback = $this->createCallbackMock($this->once(), function(InvocationMocker $invoke) {
-            $invoke->with('foo')->willReturn('bar');
+            $invoke->with('foo', 'zoo')->willReturn('bar');
         });
         
         $this->assertTrue(is_callable($callback));
         
-        $this->assertEquals('bar', $callback('foo'));
+        $this->assertEquals('bar', $callback('foo', 'zoo'));
     }
     
     public function testCreateCallbackMockAssertInvokeFail()
@@ -149,4 +172,13 @@ class TestHelperTest extends TestCase
             $this->forgetMockObjects();
         }
     }
+    
+    /**
+     * @expectedException \InvalidArgumentException
+     */
+    public function testCreateCallbackMockInvalidAssert()
+    {
+        $this->createCallbackMock($this->once(), 'foo');
+    }
 }
+

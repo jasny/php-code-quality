@@ -19,6 +19,7 @@ trait TestHelper
      */
     abstract public function getMockBuilder($className);
     
+    
     /**
      * Call a private or protected method
      * 
@@ -68,25 +69,43 @@ trait TestHelper
      * Create mock for next callback.
      * 
      * <code>
-     *   $callback = $this->createCallbackMock($this->once(), function(InvocationMocker $invoke) {
-     *     $invoke->with('abc')->willReturn(10);
-     *   });
+     *   $callback = $this->createCallbackMock($this->once(), ['abc'], 10);
      * </code>
      * 
-     * @param Invocation  $matcher
-     * @param callable    $assertInvoke
+     * OR
+     * 
+     * <code>
+     *   $callback = $this->createCallbackMock(
+     *     $this->once(),
+     *     function(PHPUnit_Framework_MockObject_InvocationMocker $invoke) {
+     *       $invoke->with('abc')->willReturn(10);
+     *     }
+     *   );
+     * </code>
+     * 
+     * @param Invocation     $matcher
+     * @param \Closure|array $assert
+     * @param mixed          $return
      * @return MockObject
      */
-    protected function createCallbackMock(Invocation $matcher = null, $assertInvoke = null)
+    protected function createCallbackMock(Invocation $matcher = null, $assert = null, $return = null)
     {
+        if (isset($assert) && !is_array($assert) && !$assert instanceof \Closure) {
+            $type = (is_object($assert) ? get_class($assert) . ' ' : '') . gettype($assert);
+            throw new \InvalidArgumentException("Expected an array or Closure, got a $type");
+        }
+        
         $callback = $this->getMockBuilder(\stdClass::class)->setMethods(['__invoke'])->getMock();
         
         $invoke = $matcher ? $callback->expects($matcher)->method('__invoke') : $callback->method('__invoke');
         
-        if (is_callable($assertInvoke)) {
-            $assertInvoke($invoke);
+        if ($assert instanceof \Closure) {
+            $assert($invoke);
+        } elseif (is_array($assert)) {
+            $invoke->with(...$assert)->willReturn($return);
         }
         
         return $callback;
     }
 }
+
