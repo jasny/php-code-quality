@@ -19,6 +19,15 @@ trait TestHelper
      */
     abstract public function getMockBuilder($className);
     
+    /**
+     * Assert that the array contains the expected subset.
+     * 
+     * @param array       $expected
+     * @param array|mixed $array
+     * @return void
+     */
+    abstract public function assertArraySubset($expected, $array);
+    
     
     /**
      * Call a private or protected method
