@@ -22,7 +22,7 @@ Jasny follows the [PSR-2 coding style guide](https://github.com/php-fig/fig-stan
 
 ### 2.1. Exception on [Section 2.3 - Lines](http://www.php-fig.org/psr/psr-2/#2.3.-lines)
 
-The following rule may be ignored ignored:
+The following rule may be ignored:
 
 > ~~Lines SHOULD NOT be longer than 80 characters; lines longer than that SHOULD be split into multiple subsequent lines of no more than 80 characters each.~~
 
