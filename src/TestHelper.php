@@ -2,9 +2,9 @@
 
 namespace Jasny;
 
-use PHPUnit_Framework_MockObject_MockObject as MockObject;
-use PHPUnit_Framework_MockObject_MockBuilder as MockBuilder;
-use PHPUnit_Framework_MockObject_Matcher_Invocation as Invocation;
+use PHPUnit\Framework\MockObject\MockObject;
+use PHPUnit\Framework\MockObject\MockBuilder;
+use PHPUnit\Framework\MockObject\Matcher\InvokedCount;
 
 /**
  * Helper methods
@@ -107,12 +107,12 @@ trait TestHelper
      *   );
      * </code>
      * 
-     * @param Invocation          $matcher
+     * @param InvokedCount        $matcher
      * @param \Closure|array|null $assert
      * @param mixed               $return
      * @return MockObject
      */
-    protected function createCallbackMock(Invocation $matcher = null, $assert = null, $return = null)
+    protected function createCallbackMock(InvokedCount $matcher = null, $assert = null, $return = null)
     {
         $this->assertCallbackAssert($assert);
         
