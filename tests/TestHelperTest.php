@@ -3,9 +3,9 @@
 namespace Jasny;
 
 use Jasny\TestHelper;
-use Jasny\TestHelperSupportClass;
-use PHPUnit_Framework_TestCase as TestCase;
-use PHPUnit_Framework_MockObject_Builder_InvocationMocker as InvocationMocker;
+use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\MockObject\Builder\InvocationMocker;
+use PHPUnit\Framework\ExpectationFailedException;
 
 /**
  * @covers Jasny\TestHelper
@@ -13,15 +13,20 @@ use PHPUnit_Framework_MockObject_Builder_InvocationMocker as InvocationMocker;
 class TestHelperTest extends TestCase
 {
     use TestHelper;
-    
-    /**
-     * @var TestHelperSupportClass
-     */
+
     protected $object;
     
     public function setUp()
     {
-        $this->object = new TestHelperSupportClass();
+        $this->object = new class {
+            private $privateProp;
+            protected $protectedProp;
+            public $publicProp;
+            
+            private function privateMethod($whois = 'I am') { return "$whois private"; }
+            protected function protectedMethod($whois = 'I am') { return "$whois protected"; }
+            public function publicMethod($whois = 'I am') { return "$whois public"; }
+        };
     }
     
     protected function forgetMockObjects()
@@ -100,7 +105,7 @@ class TestHelperTest extends TestCase
     
     public function testCreateCallbackMock()
     {
-        $callback = $this->createCallbackMock();
+        $callback = $this->createCallbackMock($this->any());
         
         $this->assertTrue(is_callable($callback));
         
@@ -118,7 +123,7 @@ class TestHelperTest extends TestCase
         try {
             $callback();
             $this->fail("Expected an expectation failed exception");
-        } catch (\PHPUnit_Framework_ExpectationFailedException $e) {
+        } catch (ExpectationFailedException $e) {
             $this->forgetMockObjects();
         }
     }
@@ -141,7 +146,7 @@ class TestHelperTest extends TestCase
         try {
             $callback('qux');
             $this->fail("Expected an expectation failed exception");
-        } catch (\PHPUnit_Framework_ExpectationFailedException $e) {
+        } catch (ExpectationFailedException $e) {
             $this->forgetMockObjects();
         }
     }
@@ -168,7 +173,7 @@ class TestHelperTest extends TestCase
         try {
             $callback('qux');
             $this->fail("Expected an expectation failed exception");
-        } catch (\PHPUnit_Framework_ExpectationFailedException $e) {
+        } catch (ExpectationFailedException $e) {
             $this->forgetMockObjects();
         }
     }

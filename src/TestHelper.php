@@ -4,7 +4,7 @@ namespace Jasny;
 
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\MockObject\MockBuilder;
-use PHPUnit\Framework\MockObject\Matcher\InvokedCount;
+use PHPUnit\Framework\MockObject\Matcher\Invocation;
 
 /**
  * Helper methods
@@ -28,7 +28,7 @@ trait TestHelper
      * @param string      $message
      * @return void
      */
-    abstract public function assertArraySubset($subset, $array, $strict = false, $message = '');
+    abstract public function assertArraySubset($subset, $array, bool $strict = false, string $message = ''): void;
     
     
     /**
@@ -39,7 +39,7 @@ trait TestHelper
      * @param array  $args
      * @return mixed
      */
-    protected function callPrivateMethod($object, $method, array $args = [])
+    protected function callPrivateMethod($object, string $method, array $args = [])
     {
         $refl = new \ReflectionMethod(get_class($object), $method);
         $refl->setAccessible(true);
@@ -55,7 +55,7 @@ trait TestHelper
      * @param mixed  $value
      * @return mixed
      */
-    protected function setPrivateProperty($object, $property, $value)
+    protected function setPrivateProperty($object, string $property, $value)
     {
         $refl = new \ReflectionProperty(get_class($object), $property);
         $refl->setAccessible(true);
@@ -70,24 +70,12 @@ trait TestHelper
      * @param int    $type     Expected error type, E_* constant
      * @param string $message  Expected error message
      */
-    protected function assertLastError($type, $message = null)
+    protected function assertLastError(int $type, string $message = null)
     {
         $expected = compact('type') + (isset($message) ? compact('message') : []);
         $this->assertArraySubset($expected, error_get_last());
     }
     
-    
-    /**
-     * @param \Closure|array|null|mixed $assert
-     * @throws \InvalidArgumentException
-     */
-    protected function assertCallbackAssert($assert)
-    {
-        if (isset($assert) && !is_array($assert) && !$assert instanceof \Closure) {
-            $type = (is_object($assert) ? get_class($assert) . ' ' : '') . gettype($assert);
-            throw new \InvalidArgumentException("Expected an array or Closure, got a $type");
-        }
-    }
     
     /**
      * Create mock for next callback.
@@ -107,18 +95,20 @@ trait TestHelper
      *   );
      * </code>
      * 
-     * @param InvokedCount        $matcher
+     * @param Invocation          $matcher
      * @param \Closure|array|null $assert
      * @param mixed               $return
      * @return MockObject
      */
-    protected function createCallbackMock(InvokedCount $matcher = null, $assert = null, $return = null)
+    protected function createCallbackMock(Invocation $matcher, $assert = null, $return = null): MockObject
     {
-        $this->assertCallbackAssert($assert);
+        if (isset($assert) && !is_array($assert) && !$assert instanceof \Closure) {
+            $type = (is_object($assert) ? get_class($assert) . ' ' : '') . gettype($assert);
+            throw new \InvalidArgumentException("Expected an array or Closure, got a $type");
+        }
         
         $callback = $this->getMockBuilder(\stdClass::class)->setMethods(['__invoke'])->getMock();
-        
-        $invoke = $matcher ? $callback->expects($matcher)->method('__invoke') : $callback->method('__invoke');
+        $invoke = $callback->expects($matcher)->method('__invoke');
         
         if ($assert instanceof \Closure) {
             $assert($invoke);
