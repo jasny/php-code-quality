@@ -17,7 +17,7 @@ trait TestHelper
      * @param string $className
      * @return MockBuilder
      */
-    abstract public function getMockBuilder($className);
+    abstract public function getMockBuilder($className): MockBuilder;
     
     /**
      * Assert that the array contains the expected subset.
