@@ -62,8 +62,21 @@ trait TestHelper
         
         $refl->setValue($object, $value);
     }
-    
-    
+
+    /**
+     * Get a private or protected property
+     * @param  object $obj
+     * @param  string $prop
+     * @return mixed
+     */
+    protected function getPrivateProperty($obj, string $prop) {
+        $reflection = new \ReflectionClass($obj);
+        $property = $reflection->getProperty($prop);
+        $property->setAccessible(true);
+
+        return $property->getValue($obj);
+    }
+
     /**
      * Assert the last error
      * 
