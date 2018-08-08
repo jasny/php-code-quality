@@ -33,6 +33,17 @@ Copy the PHPUnit configuration into the projects root folder
 [vfsStream](https://github.com/mikey179/vfsStream) is a stream wrapper for a virtual file system that may be helpful
 in unit tests to mock the real file system.
 
+### Codeception (optional)
+[Codeception](http://codeception.com/) is a BDD style testing frameworks for PHP. It can be used for unit, functional
+and integration tests.
+
+The [Codeception module for Jasny MVC](https://github.com/jasny/codeception-module) allows you to run tests for
+applications that use Jasny MVC.
+
+Codeception isn't installed by default. It can be installed through composer.
+
+    composer require --dev codeception/codeception jasny/codeception-module
+
 ### PHP CodeSniffer
 [phpcs](https://github.com/squizlabs/PHP_CodeSniffer) tokenises PHP files and detects violations of a defined set of
 coding standards. It is an essential development tool that ensures your code remains clean and consistent.
@@ -50,17 +61,23 @@ Copy the PHPStan configuration to the project root folder
 
     cp vendor/jasny/php-code-quality/phpstan.neon.dist phpstan.neon
 
-### Codeception (optional)
-[Codeception](http://codeception.com/) is a BDD style testing frameworks for PHP. It can be used for unit, functional
-and integration tests.
+### Composer scripts
+Composer can be configured to run all tests
 
-The [Codeception module for Jasny MVC](https://github.com/jasny/codeception-module) allows you to run tests for
-applications that use Jasny MVC.
+    "scripts": {
+        "test": [
+            "phpunit",
+            "phpcs -p",
+            "phpstan analyse"
+        ]
+    },
+    "scripts-descriptions": {
+        "test": "Run all tests and quality checks"
+    }
 
-Codeception isn't installed by default. It can be installed through composer.
+To run all tests do
 
-    composer require --dev codeception/codeception jasny/codeception-module
-
+    composer run-script test
 
 ## Services
 
