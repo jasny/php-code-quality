@@ -38,6 +38,10 @@ Codeception isn't installed by default. It can be installed through composer.
 
     composer require --dev codeception/codeception jasny/codeception-module
 
+### PHP Cloc
+
+[phpcloc](https://github.com/appzcoder/phpcloc) Count the lines of codes in the project as PHP implementation of cloc.
+
 ### PHP CodeSniffer
 [phpcs](https://github.com/squizlabs/PHP_CodeSniffer) tokenises PHP files and detects violations of a defined set of
 coding standards. It is an essential development tool that ensures your code remains clean and consistent.
@@ -61,7 +65,8 @@ Composer can be configured to run all tests
     "scripts": {
         "test": [
             "phpunit",
-            "phpcs -p",
+            "phpcloc cloc src",
+            "phpcs -p src",
             "phpstan analyse"
         ]
     },
@@ -88,9 +93,6 @@ Copy the Travis CI configuration file from the php-code-quality directory.
 ### Scrutinizer
 [Scrutinizer](https://scrutinizer-ci.com/) tests code quality using PHP CodeSniffer, PHPStan and a custom analysis
 tool from Scrutinizer. It also collects tests coverage results from Travis CI.
-
-### SensioLabsInsight
-[SensioLabsInsight](https://insight.sensiolabs.com) gives automatic and unique advise for increasing code quality.
 
 ### Better Code Hub
 [Better Code Hub](https://bettercodehub.com) checks the source code against 10 guidelines.
