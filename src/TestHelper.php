@@ -98,7 +98,7 @@ trait TestHelper
      * @param Invocation          $matcher
      * @param \Closure|array|null $assert
      * @param mixed               $return
-     * @return MockObject
+     * @return MockObject|\Closure
      */
     protected function createCallbackMock(Invocation $matcher, $assert = null, $return = null): MockObject
     {
