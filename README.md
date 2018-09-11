@@ -94,10 +94,3 @@ Copy the Travis CI configuration file from the php-code-quality directory.
 [Scrutinizer](https://scrutinizer-ci.com/) tests code quality using PHP CodeSniffer, PHPStan and a custom analysis
 tool from Scrutinizer. It also collects tests coverage results from Travis CI.
 
-### Better Code Hub
-[Better Code Hub](https://bettercodehub.com) checks the source code against 10 guidelines.
-
-Copy the Better Code Hub configuration file into the project root directory.
-
-    cp vendor/jasny/php-code-quality/bettercodehub.yml.dist .bettercodehub.yml
-
