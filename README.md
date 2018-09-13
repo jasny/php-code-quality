@@ -66,8 +66,8 @@ Composer can be configured to run all tests
         "test": [
             "phpunit",
             "phpcloc cloc src",
-            "phpcs -p src",
-            "phpstan analyse"
+            "phpstan analyse",
+            "phpcs -p src"
         ]
     },
     "scripts-descriptions": {
