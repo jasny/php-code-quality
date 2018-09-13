@@ -11,11 +11,11 @@
     ],
     "require": {
         "php": "~7.1",
-        "phpunit/phpunit": ">= 7.0",
+        "phpunit/phpunit": ">= 7.0, < 8.0",
         "mikey179/vfsStream": "~1.6",
         "squizlabs/php_codesniffer": "~3.2",
-        "phpstan/phpstan": "^0.10.2",
-        "phpstan/phpstan-strict-rules": "^0.10.1",
+        "phpstan/phpstan": ">= 0.9.0, < 1.0.0",
+        "phpstan/phpstan-strict-rules": ">= 0.9.0, < 1.0.0",
         "appzcoder/phpcloc": "^0.0.2"
     },
     "suggest": {
