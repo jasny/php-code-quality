@@ -63,9 +63,9 @@ if (isset($foo->bar) && $foo->bar > 0) {
 
 ### 3.6. Arrays
 
-You MUST use brackets `[ ]` to create an array.
+You MUST use brackets `[ ]` to create an array and not `array( )`.
 
-You MUST place each subarray on a new line for multidimension arrays.
+You SHOULD place each subarray on a new line for multidimension arrays.
 
 ```php
 $array = [
@@ -85,14 +85,12 @@ $foo = new Foo();
 
 ### 3.7. Comparison
 
-Always use [identical comparison](http://php.net/manual/en/language.operators.comparison.php). If needed explicitly
-cast values to a specific type (eg `(string)$foo === $bar)`).
+You SHOULD always use [identical comparison](http://php.net/manual/en/language.operators.comparison.php). If needed, 
+explicitly cast values to a specific type (eg `(string)$foo === $bar)`).
 
 Always use variable operator value (eg `$foo >= 10`) and never yoda coditions.
 
-Use `return null;` when a function explicitly returns null values and use `return;` when the function returns void
-values.
-
+Use `return null;` when a function explicitly returns null values and use `return;` when the function returns void.
 
 ### 3.8. Nested blocks
 
@@ -190,7 +188,7 @@ Each project MUST include a `README.md` document in the root folder.
 
 The README document SHOULD include the title of and a short description the project.
 
-The README document SHOULD include a list of prerequisites.
+The README document MAY include a list of prerequisites.
 
 The README document SHOULD include installation instructions.
 
