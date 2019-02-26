@@ -85,12 +85,11 @@ $foo = new Foo();
 
 ### 3.7. Comparison
 
-You SHOULD always use [identical comparison](http://php.net/manual/en/language.operators.comparison.php). If needed, 
-explicitly cast values to a specific type (eg `(string)$foo === $bar)`).
+Loose comparison does loose casting with unexpected result. Similar to arithmetic operators (`+`/`-`/`*`/`/`/`**`/`%`),
+loose comparison operators **should only** be used for numeric values. This is true for `==`, `!=`, `<`, `>`, `<=`,
+`>=` and `<=>`.
 
-Always use variable operator value (eg `$foo >= 10`) and never yoda coditions.
-
-Use `return null;` when a function explicitly returns null values and use `return;` when the function returns void.
+For other types use strict comparion `===` and `!==` or type specific functions like `strcmp`.
 
 ### 3.8. Nested blocks
 
@@ -249,19 +248,4 @@ Test cases SHOULD NOT use document blocks for all properties and methods as stat
 
 Tests SHOULD use document blocks for annotations where available. Test cases SHOULD use annotations rather than code if
 possible.
-
-### 5.5. Continuous integration
-
-The default branch (typically `master`) SHOULD be protected. You SHOULD NOT push directly to the default branch.
-
-Pull requests SHOULD be tested by running the unit tests on an continuous integration platform (like Travis CI or
-Scrutinizer) prior to being merged with the default branch.
-
-Pull requests SHOULD be tested on code quality (using eg Scrutinizer) prior to being merged with the default branch.
-
-
-## 6. License
-
-Open source Jasny libraries SHOULD be released under the MIT license. A `LICENSE` file SHOULD be present in the library's
-root folder.
 
