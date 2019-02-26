@@ -1,7 +1,7 @@
 {
     "name": "jasny/php-code-quality",
     "description": "Quality assurance toolchain",
-    "type": "library",
+    "type": "metapackage",
     "license": "MIT",
     "authors": [
         {
@@ -16,18 +16,11 @@
         "squizlabs/php_codesniffer": "~3.2",
         "phpstan/phpstan": ">= 0.9.0, < 1.0.0",
         "phpstan/phpstan-strict-rules": ">= 0.9.0, < 1.0.0",
-        "appzcoder/phpcloc": "^0.0.2"
+        "appzcoder/phpcloc": "^0.0.2",
+        "jasny/phpunit-extension": "~0.1.0"
     },
     "suggest": {
         "codeception/codeception": "BDD testing framework for testing applications",
         "jasny/codeception-module": "Codeception integration for Jasny MVC"
-    },
-    "autoload": {
-        "psr-4": {
-            "Jasny\\": "src/"
-        }
-    },
-    "autoload-dev": {
-        "classmap": ["tests/support"]
     }
 }
