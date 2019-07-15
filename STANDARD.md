@@ -9,44 +9,38 @@ The term Application is used for deliverables that are typically served by a web
 term Library is used for a collection of classes and/or functions which is consumed by projects or other libraries.
 
 
-## 1. PSR-1
+## 1. PSR-1 and PSR-2
 
-Jasny follows the [PSR-1 basic coding standard](http://www.php-fig.org/psr/psr-1/) with an exception on [Section 3 - Namespace and Class Names](3.-namespace-and-class-names).
+Jasny follows the [PSR-1 basic coding standard](http://www.php-fig.org/psr/psr-1/) and
+[PSR-2 coding style guide](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-2-coding-style-guide.md).
 
-Applications SHOULD NOT use a vendor namespace.
-
-
-## 2. PSR-2
-
-Jasny follows the [PSR-2 coding style guide](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-2-coding-style-guide.md).
-
-### 2.1. Exception on [Section 2.3 - Lines](http://www.php-fig.org/psr/psr-2/#2.3.-lines)
+### 1.1. Exception on [Section 2.3 - Lines](http://www.php-fig.org/psr/psr-2/#2.3.-lines)
 
 The following rule may be ignored:
 
 > ~~Lines SHOULD NOT be longer than 80 characters; lines longer than that SHOULD be split into multiple subsequent lines of no more than 80 characters each.~~
 
 
-## 3. Structure
+## 2. Structure
 
-### 3.1. Keywords
+### 2.1. Keywords
 
 The keywords `AND` and `OR` SHOULD NOT be used. Instead use `&&` and `||`.
 
-### 3.2. File length
+### 2.2. File length
 
 PHP files SHOULD be 500 lines or less.
 
-### 3.3. Function length
+### 2.3. Function length
 
 Functions and methods SHOULD be 30 lines or less.
 
-### 3.4. Alternative syntax for control structures
+### 2.4. Alternative syntax for control structures
 
 The [alternative syntax for control structures](http://php.net/manual/en/control-structures.alternative-syntax.php)
 MUST NOT be used in files containing only PHP.
 
-### 3.5. Spaces
+### 2.5. Spaces
 
 You MUST a single space after each comma delimiter.
 
@@ -61,7 +55,7 @@ if (isset($foo->bar) && $foo->bar > 0) {
 }
 ```
 
-### 3.6. Arrays
+### 2.6. Arrays
 
 You MUST use brackets `[ ]` to create an array and not `array( )`.
 
@@ -75,23 +69,15 @@ $array = [
 ];
 ```
 
-### 3.6. Instantiating objects
+### 2.7. Comparison
 
-Use parentheses when instantiating classes regardless of the number of arguments the constructor has.
-
-```
-$foo = new Foo();
-```
-
-### 3.7. Comparison
-
-Loose comparison does loose casting with unexpected result. Similar to arithmetic operators (`+`/`-`/`*`/`/`/`**`/`%`),
+Loose comparison does loose casting with unexpected results. Similar to arithmetic operators (`+`/`-`/`*`/`/`/`**`/`%`),
 loose comparison operators **should only** be used for numeric values. This is true for `==`, `!=`, `<`, `>`, `<=`,
 `>=` and `<=>`.
 
 For other types use strict comparion `===` and `!==` or type specific functions like `strcmp`.
 
-### 3.8. Nested blocks
+### 2.8. Nested blocks
 
 Within the body of a function or method, there SHOULD be no more than 3 levels of nesting. With this many levels of
 nesting, introduce a new function rather than to use more nested blocks.
@@ -108,7 +94,7 @@ function foo() {
 }
 ```
 
-### 3.9. Control flow
+### 2.9. Control flow
 
 Assertions and alternative flows SHOULD come before the normal flow to reduce nesting.
 
@@ -172,16 +158,9 @@ function buzz($b) {
 }
 ```
 
-## 3.10. Classes
+## 3. Documentation
 
-Properties and methods SHOULD NOT be private, only public or protected.
-
-Classes SHOULD NOT have simple getter and setter functions as replacement for public properties.
-
-
-## 4. Documentation
-
-### 4.1. README
+### 3.1. README
 
 Each project MUST include a `README.md` document in the root folder.
 
@@ -195,14 +174,14 @@ The README document SHOULD include API documentation or a link to the API docume
 
 The README document MAY include additional information which can be useful for developers.
 
-### 4.2. Document blocks
+### 3.2. Document blocks
 
 Each class MUST have a [document block](https://en.wikipedia.org/wiki/PHPDoc).
 
-Each public property MUST have a document block with an `@var` tag. Each protected of private property SHOULD have a
-document block with an `@var` tag.
+Each public property that doesn't have a type hint MUST have a document block with an `@var` tag. Each protected and
+private property that doesn't have a type hint SHOULD have a document block with an `@var` tag.
 
-Each function and method MUST have a document block with `@param` tags for all parameters and an `@return` tag if a
+Each function and method SHOULD have a document block with `@param` tags for all parameters and an `@return` tag if a
 value is returned.
 
 Variables document block SHOULD be as precise as possible. Examples:
@@ -214,12 +193,12 @@ Variables document block SHOULD be as precise as possible. Examples:
 A document block for a method that implements the [fluent interface pattern](https://en.wikipedia.org/wiki/Fluent_interface)
 SHOULD state `@return $this`.
 
-_Tests cases are an exception to this paragraph. See 5.4._
+_Tests cases are an exception to this paragraph. See 4.4._
 
 
-## 5. Testing
+## 4. Testing
 
-### 5.1. Unit tests
+### 4.1. Unit tests
  
 Applications and libraries SHOULD include unit tests, runnable by phpunit or codeception.
 
@@ -230,21 +209,21 @@ Each model class SHOULD be covered by unit tests, with a code coverage of 95% or
 
 A controller class SHOULD NOT be covered by unit tests.
 
-### 5.2. API tests
+### 4.2. API tests
 
 Applications with a web service API SHOULD include API tests, runnable by codeception.
 
 Controller methods related to a web service SHOULD be covered by API tests, with a code covereage of 95% or more.
 
-### 5.3. Functional tests
+### 4.3. Functional tests
 
 Applications with a user interface SHOULD have a test plan for manual acceptance testing.
 
 Controller methods not related to a web service MAY be covered by automated functional tests, runnable by codeception.
 
-### 5.4. Documentation
+### 4.4. Documentation
 
-Test cases SHOULD NOT use document blocks for all properties and methods as stated in 4.2.
+Test cases SHOULD NOT use document blocks for all properties and methods as stated in 3.2.
 
 Tests SHOULD use document blocks for annotations where available. Test cases SHOULD use annotations rather than code if
 possible.
