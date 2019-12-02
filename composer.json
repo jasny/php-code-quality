@@ -17,7 +17,7 @@
         "phpstan/phpstan": ">= 0.11.0, < 1.0.0",
         "phpstan/phpstan-strict-rules": ">= 0.11.0, < 1.0.0",
         "appzcoder/phpcloc": "^0.0.2",
-        "jasny/phpunit-extension": "~0.1.0"
+        "jasny/phpunit-extension": "~0.2.0"
     },
     "suggest": {
         "codeception/codeception": "BDD testing framework for testing applications",
