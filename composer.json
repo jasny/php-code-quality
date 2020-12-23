@@ -11,7 +11,7 @@
     ],
     "require": {
         "phpunit/phpunit": "4.*",
-        "mikey179/vfsStream": "1.*",
+        "mikey179/vfsstream": "1.*",
         "squizlabs/php_codesniffer": "2.*",
         "phake/phake": "^2.1"
     },
