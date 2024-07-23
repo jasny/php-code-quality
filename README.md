@@ -2,13 +2,12 @@
 
 ## Coding standard
 
-The [Jasny PHP coding standard](https://github.com/jasny/php-code-quality/blob/master/STANDARD.md#readme) follows the
-PSR-2 coding standard with a few additions.
+Adhere to the [PSR-12 coding standard](https://www.php-fig.org/psr/psr-12/).
 
 
 ## Installation
 
-All PHP projects of Legal Things should include this package. It can be installed through composer.
+All PHP projects of Jasny should include this package. It can be installed through composer.
 
     composer require --dev jasny/php-code-quality
 
