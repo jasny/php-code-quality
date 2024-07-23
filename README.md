@@ -27,21 +27,6 @@ Copy the PHPUnit configuration into the projects root folder
 [vfsStream](https://github.com/mikey179/vfsStream) is a stream wrapper for a virtual file system that may be helpful
 in unit tests to mock the real file system.
 
-### Codeception (optional)
-[Codeception](http://codeception.com/) is a BDD style testing frameworks for PHP. It can be used for unit, functional
-and integration tests.
-
-The [Codeception module for Jasny MVC](https://github.com/jasny/codeception-module) allows you to run tests for
-applications that use Jasny MVC.
-
-Codeception isn't installed by default. It can be installed through composer.
-
-    composer require --dev codeception/codeception jasny/codeception-module
-
-### PHP Cloc
-
-[phpcloc](https://github.com/appzcoder/phpcloc) Count the lines of codes in the project as PHP implementation of cloc.
-
 ### PHP CodeSniffer
 [phpcs](https://github.com/squizlabs/PHP_CodeSniffer) tokenises PHP files and detects violations of a defined set of
 coding standards. It is an essential development tool that ensures your code remains clean and consistent.
@@ -65,7 +50,6 @@ Composer can be configured to run all tests
     "scripts": {
         "test": [
             "phpunit",
-            "phpcloc cloc src",
             "phpstan analyse",
             "phpcs -p src"
         ]
@@ -83,14 +67,14 @@ To run all tests do
 Open source projects should all of these quality assurance services. Closed source project may use a single service
 to both run tests and code quality checks in order to save costs.
 
-### Travis
-[Travis CI](https://travis-ci.org) will run all unit tests on each pull-request and push to the master branch.
+### GitHub actions
+[GitHub actions](https://github.com/features/actions) will run all unit tests on each pull-request and push to the master branch.
 
-Copy the Travis CI configuration file from the php-code-quality directory.
+Copy the .github folder from the php-code-quality directory.
 
-    cp vendor/jasny/php-code-quality/travis.yml.dist .travis.yml
+    cp -r vendor/jasny/php-code-quality/.github .
 
 ### Scrutinizer
 [Scrutinizer](https://scrutinizer-ci.com/) tests code quality using PHP CodeSniffer, PHPStan and a custom analysis
-tool from Scrutinizer. It also collects tests coverage results from Travis CI.
+tool from Scrutinizer. It also collects tests coverage results.
 
