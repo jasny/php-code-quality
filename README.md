@@ -70,9 +70,9 @@ to both run tests and code quality checks in order to save costs.
 ### GitHub actions
 [GitHub actions](https://github.com/features/actions) will run all unit tests on each pull-request and push to the master branch.
 
-Copy the .github folder from the php-code-quality directory.
+Copy the `github` folder from the php-code-quality directory.
 
-    cp -r vendor/jasny/php-code-quality/.github .
+    cp -r vendor/jasny/php-code-quality/github .github
 
 ### Scrutinizer
 [Scrutinizer](https://scrutinizer-ci.com/) tests code quality using PHP CodeSniffer, PHPStan and a custom analysis
